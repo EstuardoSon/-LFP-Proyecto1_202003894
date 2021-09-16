@@ -29,45 +29,21 @@ class Imagen:
         cWidth=int(self.width/self.columnas)
         cHeigth=int(self.height/self.filas)
         imagen='<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="'+str(int(self.width))+'" height="'+str(int(self.height))+'" viewBox="0 0 '+str(int(self.width))+' '+str(int(self.height))+'">\n'
-        x=0
+        y=0
 
         for i in range(int(self.filas)):
-            y = 0
+            x = 0
             for j in range(int(self.columnas)):
                 verificar = False
                 for p in self.listaPosiciones:
-                    if p.x==i and p.y==j and p.pintar==True:
+                    if p.x==j and p.y==i and p.pintar==True:
                         imagen+='<rect x="'+str(x)+'" y="'+str(y)+'" width="'+str(cWidth)+'" height="'+str(cHeigth)+'" fill="'+p.color+'" stroke-width="1" stroke="black"/>\n'
                         verificar=True
                         break
                 if not verificar:
                     imagen += '<rect x="'+str(x)+'" y="'+str(y)+'" width="' + str(cWidth) + '" height="' + str(cHeigth) + '" fill="#ffffff" stroke-width="1" stroke="black"/>\n'
-                y+=cHeigth
-            x+=cWidth
-
-
-        imagen+="</svg>\n"
-        return imagen
-
-    def crearMirrorY(self):
-        cWidth=int(self.width/self.columnas)
-        cHeigth=int(self.height/self.filas)
-        imagen='<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="'+str(int(self.width))+'" height="'+str(int(self.height))+'" viewBox="0 0 '+str(int(self.width))+' '+str(int(self.height))+'">\n'
-        x=0
-
-        for i in range(int(self.filas)):
-            y = self.height-cHeigth
-            for j in range(int(self.columnas)):
-                verificar = False
-                for p in self.listaPosiciones:
-                    if p.x==i and p.y==j and p.pintar==True:
-                        imagen+='<rect x="'+str(x)+'" y="'+str(y)+'" width="'+str(cWidth)+'" height="'+str(cHeigth)+'" fill="'+p.color+'" stroke-width="1" stroke="black"/>\n'
-                        verificar=True
-                        break
-                if not verificar:
-                    imagen += '<rect x="'+str(x)+'" y="'+str(y)+'" width="' + str(cWidth) + '" height="' + str(cHeigth) + '" fill="#ffffff" stroke-width="1" stroke="black"/>\n'
-                y-=cHeigth
-            x+=cWidth
+                x+=cWidth
+            y+=cHeigth
 
 
         imagen+="</svg>\n"
@@ -77,21 +53,45 @@ class Imagen:
         cWidth=int(self.width/self.columnas)
         cHeigth=int(self.height/self.filas)
         imagen='<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="'+str(int(self.width))+'" height="'+str(int(self.height))+'" viewBox="0 0 '+str(int(self.width))+' '+str(int(self.height))+'">\n'
-        x=self.width-cWidth
+        y=0
 
         for i in range(int(self.filas)):
-            y = 0
+            x = self.width-cWidth
             for j in range(int(self.columnas)):
                 verificar = False
                 for p in self.listaPosiciones:
-                    if p.x==i and p.y==j and p.pintar==True:
+                    if p.x==j and p.y==i and p.pintar==True:
                         imagen+='<rect x="'+str(x)+'" y="'+str(y)+'" width="'+str(cWidth)+'" height="'+str(cHeigth)+'" fill="'+p.color+'" stroke-width="1" stroke="black"/>\n'
                         verificar=True
                         break
                 if not verificar:
                     imagen += '<rect x="'+str(x)+'" y="'+str(y)+'" width="' + str(cWidth) + '" height="' + str(cHeigth) + '" fill="#ffffff" stroke-width="1" stroke="black"/>\n'
-                y+=cHeigth
-            x-=cWidth
+                x-=cWidth
+            y+=cHeigth
+
+
+        imagen+="</svg>\n"
+        return imagen
+
+    def crearMirrorY(self):
+        cWidth=int(self.width/self.columnas)
+        cHeigth=int(self.height/self.filas)
+        imagen='<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="'+str(int(self.width))+'" height="'+str(int(self.height))+'" viewBox="0 0 '+str(int(self.width))+' '+str(int(self.height))+'">\n'
+        y=self.height-cHeigth
+
+        for i in range(int(self.filas)):
+            x = 0
+            for j in range(int(self.columnas)):
+                verificar = False
+                for p in self.listaPosiciones:
+                    if p.x==j and p.y==i and p.pintar==True:
+                        imagen+='<rect x="'+str(x)+'" y="'+str(y)+'" width="'+str(cWidth)+'" height="'+str(cHeigth)+'" fill="'+p.color+'" stroke-width="1" stroke="black"/>\n'
+                        verificar=True
+                        break
+                if not verificar:
+                    imagen += '<rect x="'+str(x)+'" y="'+str(y)+'" width="' + str(cWidth) + '" height="' + str(cHeigth) + '" fill="#ffffff" stroke-width="1" stroke="black"/>\n'
+                x+=cWidth
+            y-=cHeigth
 
 
         imagen+="</svg>\n"
@@ -101,21 +101,21 @@ class Imagen:
         cWidth=int(self.width/self.columnas)
         cHeigth=int(self.height/self.filas)
         imagen='<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="'+str(int(self.width))+'" height="'+str(int(self.height))+'" viewBox="0 0 '+str(int(self.width))+' '+str(int(self.height))+'">\n'
-        x=self.width-cWidth
+        y=self.height-cHeigth
 
         for i in range(int(self.filas)):
-            y = self.height-cHeigth
+            x = self.width-cWidth
             for j in range(int(self.columnas)):
                 verificar = False
                 for p in self.listaPosiciones:
-                    if p.x==i and p.y==j and p.pintar==True:
+                    if p.x==j and p.y==i and p.pintar==True:
                         imagen+='<rect x="'+str(x)+'" y="'+str(y)+'" width="'+str(cWidth)+'" height="'+str(cHeigth)+'" fill="'+p.color+'" stroke-width="1" stroke="black"/>\n'
                         verificar=True
                         break
                 if not verificar:
                     imagen += '<rect x="'+str(x)+'" y="'+str(y)+'" width="' + str(cWidth) + '" height="' + str(cHeigth) + '" fill="#ffffff" stroke-width="1" stroke="black"/>\n'
-                y-=cHeigth
-            x-=cWidth
+                x-=cWidth
+            y-=cHeigth
 
 
         imagen+="</svg>\n"

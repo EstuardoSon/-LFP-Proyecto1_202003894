@@ -2,6 +2,7 @@ from cairosvg import svg2png
 from tkinter import filedialog
 from tkinter import *
 from tkinter import ttk
+from PIL import Image
 import Analizador
 import os
 
@@ -113,7 +114,7 @@ class Ventana:
                 if imagen.doubleMirror==True:
                     file.write("<td>\n<H3> DoubleMirror <H3>\n")
                     file.write(imagen.crearMirrorD()+"</td>\n")
-                file.write("</table>\n</tr>")
+                file.write("</tr>\n</table>\n")
 
             file.write("</body>\n</html>")
             file.close()
@@ -126,6 +127,9 @@ class Ventana:
         for imagen in self.procesar.listaImagenes:
             if imagen.titulo==self.listaImagen.get():
                 svg2png(bytestring=imagen.crearImagen(), write_to='Reportes\imagen.png')
+                redimensionar=Image.open("Reportes\imagen.png")
+                redimensionar = redimensionar.resize((500, 500), Image.ANTIALIAS)
+                redimensionar.save("Reportes\imagen.png","png")
                 imagens = PhotoImage(file="Reportes\imagen.png")
                 self.crearLienzo(imagens)
 
@@ -133,6 +137,9 @@ class Ventana:
         for imagen in self.procesar.listaImagenes:
             if imagen.titulo==self.listaImagen.get() and imagen.mirrorX==True:
                 svg2png(bytestring=imagen.crearMirrorX(), write_to='Reportes\imagen.png')
+                redimensionar = Image.open("Reportes\imagen.png")
+                redimensionar = redimensionar.resize((500, 500), Image.ANTIALIAS)
+                redimensionar.save("Reportes\imagen.png", "png")
                 imagens = PhotoImage(file="Reportes\imagen.png")
                 self.crearLienzo(imagens)
 
@@ -140,6 +147,9 @@ class Ventana:
         for imagen in self.procesar.listaImagenes:
             if imagen.titulo==self.listaImagen.get() and imagen.mirrorY==True:
                 svg2png(bytestring=imagen.crearMirrorY(), write_to='Reportes\imagen.png')
+                redimensionar = Image.open("Reportes\imagen.png")
+                redimensionar = redimensionar.resize((500, 500), Image.ANTIALIAS)
+                redimensionar.save("Reportes\imagen.png", "png")
                 imagens = PhotoImage(file="Reportes\imagen.png")
                 self.crearLienzo(imagens)
 
@@ -147,6 +157,9 @@ class Ventana:
         for imagen in self.procesar.listaImagenes:
             if imagen.titulo==self.listaImagen.get() and imagen.doubleMirror==True:
                 svg2png(bytestring=imagen.crearMirrorD(), write_to='Reportes\imagen.png')
+                redimensionar = Image.open("Reportes\imagen.png")
+                redimensionar = redimensionar.resize((500, 500), Image.ANTIALIAS)
+                redimensionar.save("Reportes\imagen.png", "png")
                 imagens = PhotoImage(file="Reportes\imagen.png")
                 self.crearLienzo(imagens)
 

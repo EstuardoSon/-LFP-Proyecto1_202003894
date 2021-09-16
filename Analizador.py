@@ -201,7 +201,7 @@ class Analizador:
                             self.comprobar+=cadena
                             self.posicion.color=cadena
 
-                        self.listaTokens.append(Token.Token("Codigo Color Hex", cadena, "#[a-zA-Z0-9]]{6}", linea, noCaracter))
+                        self.listaTokens.append(Token.Token("Codigo Color Hex", cadena, "#[a-fA-F0-9]{6}", linea, noCaracter))
 
                     else:
                         self.listaErrores.append(Errores.Error("Token no reconocido", cadena, linea, noCaracter))
