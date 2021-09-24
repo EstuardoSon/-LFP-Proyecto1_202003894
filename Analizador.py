@@ -15,7 +15,7 @@ class Analizador:
         self.posicion=None
 
     def reconocerTokens(self):
-        centinela="°"
+        centinela="$"
         texto=self.contenido+centinela
         linea=1
         noCaracter=1

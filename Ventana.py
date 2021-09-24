@@ -18,6 +18,10 @@ class Ventana:
         self.frame.pack()
         self.listaImagen= ttk.Combobox(self.frame, state="readonly")
         self.listaImagen.place(height=20, width=115,x=291,y=1)
+        self.textDimension=StringVar()
+        self.textDimension.set("Dimension")
+        self.dimensiones=Label(self.ventana,textvariable=self.textDimension,bg="grey")
+        self.dimensiones.place(x=500,y=10,width=120,height=20)
 
     def crearBoton(self, texto, alto, ancho,X,Y,color="white"):
         if texto=="Cargar Archivos":
@@ -126,6 +130,7 @@ class Ventana:
     def verOriginal(self):
         for imagen in self.procesar.listaImagenes:
             if imagen.titulo==self.listaImagen.get():
+                self.textDimension.set(str(imagen.width)+" x "+str(imagen.height))
                 svg2png(bytestring=imagen.crearImagen(), write_to='Reportes\imagen.png')
                 redimensionar=Image.open("Reportes\imagen.png")
                 redimensionar = redimensionar.resize((500, 500), Image.ANTIALIAS)
@@ -136,6 +141,7 @@ class Ventana:
     def verX(self):
         for imagen in self.procesar.listaImagenes:
             if imagen.titulo==self.listaImagen.get() and imagen.mirrorX==True:
+                self.textDimension.set(str(imagen.width) + " x " + str(imagen.height))
                 svg2png(bytestring=imagen.crearMirrorX(), write_to='Reportes\imagen.png')
                 redimensionar = Image.open("Reportes\imagen.png")
                 redimensionar = redimensionar.resize((500, 500), Image.ANTIALIAS)
@@ -146,6 +152,7 @@ class Ventana:
     def verY(self):
         for imagen in self.procesar.listaImagenes:
             if imagen.titulo==self.listaImagen.get() and imagen.mirrorY==True:
+                self.textDimension.set(str(imagen.width) + " x " + str(imagen.height))
                 svg2png(bytestring=imagen.crearMirrorY(), write_to='Reportes\imagen.png')
                 redimensionar = Image.open("Reportes\imagen.png")
                 redimensionar = redimensionar.resize((500, 500), Image.ANTIALIAS)
@@ -156,6 +163,7 @@ class Ventana:
     def verD(self):
         for imagen in self.procesar.listaImagenes:
             if imagen.titulo==self.listaImagen.get() and imagen.doubleMirror==True:
+                self.textDimension.set(str(imagen.width) + " x " + str(imagen.height))
                 svg2png(bytestring=imagen.crearMirrorD(), write_to='Reportes\imagen.png')
                 redimensionar = Image.open("Reportes\imagen.png")
                 redimensionar = redimensionar.resize((500, 500), Image.ANTIALIAS)
